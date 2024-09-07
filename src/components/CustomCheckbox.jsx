@@ -6,14 +6,18 @@ const CustomCheckbox = ({ label, ...props }) => {
 
   return (
     <>
-      <div className="checkbox">
+      <div className="checkbox flex justify-center items-center gap-2 ">
         <input
           {...field}
           {...props}
           type="checkbox"
-          className={meta.touched && meta.error ? "error-input" : ""}
+          className={` ml-3 h-5 w-5 ${
+            meta.touched && meta.error ? "error-input" : ""
+          }`}
         />
-        <span>I accept the terms of service</span>
+        <span className="text-white text-[18px]">
+          I accept the terms of service
+        </span>
         {meta.touched && meta.error && <p className="error">{meta.error}</p>}
       </div>
     </>

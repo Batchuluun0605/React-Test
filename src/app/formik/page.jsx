@@ -3,7 +3,7 @@ import { BasicSchema, advancedSchema } from "@/Schema";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import CustomInput from "@/components/CustomInput";
 import CustomSelect from "@/components/CustomSelect";
-import { Field, Form, Formik, useFormik } from "formik";
+import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import React, { useState } from "react";
 
 const onSubmit = async (values, actions) => {
@@ -11,155 +11,89 @@ const onSubmit = async (values, actions) => {
   actions.resetForm();
 };
 function page() {
-  const [state, setState] = useState(true);
-  const {
-    handleBlur,
-    isSubmitting,
-    errors,
-    touched,
-    values,
-    handleChange,
-    handleSubmit,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      age: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: BasicSchema,
-    onSubmit,
-  });
-
+  const [showPassword, setShowPassword] = useState(true);
   return (
     <div className=" h-screen bg-sky-900 items-center flex justify-center ">
-      <div className="flex flex-col items-center justify-center bg-green-600 rounded-md p-2">
-        <div className="flex gap-10">
-          <button
-            onClick={() => setState(true)}
-            className={state ? "text-white" : ""}
-            value={state}
-          >
-            Basic
-          </button>
-
-          <button
-            onClick={() => setState(false)}
-            className={state ? "" : "text-white"}
-          >
-            Advansed
-          </button>
-        </div>
-        <div className="p-20">
-          {state ? (
+      <div className="">
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+            confirmPassword: "",
+            correctTos: "",
+          }}
+          validationSchema={BasicSchema}
+          onSubmit={onSubmit}
+        >
+          {(props, isSubmitting) => (
             <form
-              autoComplete="off"
-              onSubmit={handleSubmit}
-              // onSubmit={handleSubmit}
-              className="flex flex-col font-semibold gap-2"
+              onSubmit={props.handleSubmit}
+              className="flex flex-col gap-10"
             >
-              <label htmlFor="email">Email</label>
-              <input
-                placeholder="Enter your email... "
-                id="email"
-                type="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.email && touched.email ? "error-input" : ""}
-              />
-              {errors.email && touched.email && (
-                <p className="error">{errors.email}</p>
-              )}
-              <label htmlFor="age">Age</label>
-              <input
-                placeholder="Enter your age... "
-                id="age"
-                type="age"
-                value={values.age}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.age && touched.age ? "error-input" : ""}
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                placeholder="Enter your password... "
-                id="password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                  errors.password && touched.password ? "error-input" : ""
-                }
-              />
-              <label htmlFor="confirmPassword">ConfirmPassword</label>
-              <input
-                placeholder="Enter your confirmPassword... "
-                id="confirmPassword"
-                type="confirmPassword"
-                value={values.confirmPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                  errors.confirmPassword && touched.confirmPassword
-                    ? "error-input"
-                    : ""
-                }
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="border rounded-md w-full px-2 py-1"
-              >
-                submit
-              </button>
-            </form>
-          ) : (
-            <Formik
-              initialValues={{ username: "", jobType: "", acceptedTos: false }}
-              validationSchema={advancedSchema}
-              onSubmit={onSubmit}
-            >
-              {(props, isSubmitting) => (
-                <form onSubmit={props.handleSubmit}>
+              <h1 className="text-2xl font-semibold text-white m-auto">
+                User Login
+              </h1>
+              <div className="flex flex-col gap-5 px-10">
+                <CustomInput
+                  name="email"
+                  type="email"
+                  placeholder="email"
+                  // className="bg-red-600"
+                />
+                <div className="flex ">
                   <CustomInput
-                    label="Username"
-                    type="text"
-                    name="username"
-                    placeholder="Enter your username"
+                    name="password"
+                    type={showPassword ? "password" : "text"}
+                    label=""
                   />
-                  <CustomSelect
-                    name="jobType"
-                    label="job type"
-                    placeholder="please select a job"
-                  >
-                    <option value="">Please select a job type</option>
-                    <option value="developer">Developer</option>
-                    <option value="designer">Designer</option>
-                    <option value="manager">Manager</option>
-                    <option value="other">other</option>
-                  </CustomSelect>
-                  <CustomCheckbox type="checkbox" name="acceptedTos" />
-                  {/* <Field type="text" name="name" placeholder="Name" /> */}
-                  {/* <input
-                    type="text"
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    value={props.values.name}
-                    name="name"
-                  />
-                  {props.errors.name && (
-                    <div id="feedback">{props.errors.name}</div>
-                  )} */}
-                  <button disabled={isSubmitting} type="submit">
-                    Submit
-                  </button>
-                </form>
-              )}
-            </Formik>
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.25"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-eye"
+                      onClick={() => setShowPassword(false)}
+                    >
+                      <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+                      <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+                      <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+                      <path d="m2 2 20 20" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.25"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-eye"
+                      onClick={() => setShowPassword(true)}
+                    >
+                      <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </div>
+                <CustomInput name="confirmPassword" type="password" label="" />
+                <CustomCheckbox name="correctTos" label={""} />
+                <input type="text" className="" />
+                <button className="bg-cyan-500 hover:bg-cyan-600 py-2 rounded-full">
+                  Submit
+                </button>
+              </div>
+            </form>
           )}
-        </div>
+        </Formik>
       </div>
     </div>
   );
