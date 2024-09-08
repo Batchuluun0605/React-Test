@@ -44,6 +44,7 @@ const page = () => {
         value={nameRef.current.value}
         className="border"
       />
+
       <button onClick={click}>click useRef value</button>
     </div>
   );
