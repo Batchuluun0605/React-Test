@@ -10,11 +10,11 @@ const Parent = () => {
   const [age, setAge] = useState(30);
 
   const incrementAge = useCallback(() => {
-    setAge(age + 5);
+    setAge(age + 1);
   }, [age]);
 
   const incrementSalary = useCallback(() => {
-    setSalary(salary + 100);
+    setSalary(salary + 20);
   }, [salary]);
   return (
     <div>
