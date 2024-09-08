@@ -1,9 +1,9 @@
 "use client";
-import { BasicSchema, advancedSchema } from "@/Schema";
+import { BasicSchema } from "@/Schema";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import CustomInput from "@/components/CustomInput";
-import CustomSelect from "@/components/CustomSelect";
-import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
+
+import { Formik } from "formik";
 import React, { useState } from "react";
 
 const onSubmit = async (values, actions) => {
@@ -45,6 +45,7 @@ function page() {
                     name="password"
                     type={showPassword ? "password" : "text"}
                     label=""
+                    image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWEtbGFyZ2Utc21hbGwiPjxwYXRoIGQ9Ik0yMSAxNGgtNSIvPjxwYXRoIGQ9Ik0xNiAxNnYtMy41YTIuNSAyLjUgMCAwIDEgNSAwVjE2Ii8+PHBhdGggZD0iTTQuNSAxM2g2Ii8+PHBhdGggZD0ibTMgMTYgNC41LTkgNC41IDkiLz48L3N2Zz4="
                   />
                   {showPassword ? (
                     <svg
@@ -54,10 +55,10 @@ function page() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="1.25"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-eye"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-eye"
                       onClick={() => setShowPassword(false)}
                     >
                       <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
@@ -73,10 +74,10 @@ function page() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="1.25"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-eye"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-eye"
                       onClick={() => setShowPassword(true)}
                     >
                       <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
