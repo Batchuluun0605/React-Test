@@ -12,7 +12,7 @@ export const BasicSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null])
     .required("Required"),
-  check: yup.boolean().oneOf([true], "Please accept the terms of service"),
+  // check: yup.boolean().oneOf([true], "Please accept the terms of service"),
 });
 
 export const advancedSchema = yup.object().shape({
