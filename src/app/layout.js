@@ -20,6 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <link rel="preload" href="..." as="...1"></link>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
