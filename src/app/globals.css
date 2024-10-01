@@ -26,8 +26,17 @@ body {
   }
 }
 
-.page {
-  background-image: url("./../../download-Photoroom.jpg");
+.container1:hover > :not(:hover) {
+  transform: scale(0.5);
+}
+
+.img1:hover {
+  transform: scale(1.6);
+}
+
+.img2:hover {
+  zoom: 150%;
+  transition: 0.7s ease-in;
 }
 
 .error-input {
