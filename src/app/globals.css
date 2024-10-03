@@ -51,3 +51,7 @@ body {
 button:disabled {
   opacity: 0.35;
 }
+
+.element:hover {
+  box-shadow: 12px, 12px, 12px rgba(0, 0, 0, 0.1), inset, -10px -10px 10px white;
+}

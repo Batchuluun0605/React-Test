@@ -90,8 +90,8 @@ const page = () => {
         <FaUserCircle size={30} />
         <div
           className={`text-[14px] leading-5 ${
-            !open && "w-0 translate-x-24  "
-          } overflow-hidden duration-500`}
+            !open && "w-0 translate-x-96  "
+          } overflow-hidden duration-1000`}
         >
           <p>Batchuluun</p>
           <span>batchuluun655@gmail.com</span>
